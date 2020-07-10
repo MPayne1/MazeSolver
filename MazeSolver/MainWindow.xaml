@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:MazeSolver"
         
         mc:Ignorable="d"
-        WindowState="Maximized"
-        WindowStyle="None"
+        WindowState="Normal"
+        WindowStyle="SingleBorderWindow"
         Title="Maze Solver" Height="895" Width="810">
     <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
         <Grid x:Name="MainGrid" Margin="2" VerticalAlignment="Center"/>

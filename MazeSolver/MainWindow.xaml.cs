@@ -4,19 +4,11 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Media.Media3D;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace MazeSolver
 {
@@ -93,31 +85,31 @@ namespace MazeSolver
 
         private void FillPathSquare()
         {
-                if (drawMaze)
+            if (drawMaze)
+            {
+                for (int i = 0; i < 100; i++)
                 {
-                    for (int i = 0; i < 100; i++)
+                    if (currentDrawMazePosition < mazeGenerator.mapGeneration.Count())
                     {
-                        if (currentDrawMazePosition < mazeGenerator.mapGeneration.Count())
-                        {
-                            var cell = mazeGenerator.mapGeneration[currentDrawMazePosition];
-                            int x = cell.row;
-                            int y = cell.col;
+                        var cell = mazeGenerator.mapGeneration[currentDrawMazePosition];
+                        int x = cell.row;
+                        int y = cell.col;
 
-                            maze[x, y].Background = new SolidColorBrush(Colors.White);
+                        maze[x, y].Background = new SolidColorBrush(Colors.White);
 
-                            currentDrawMazePosition++;
-                        }
-                        else
-                        {
-                            drawMaze = false;
-                            currentDrawMazePosition = 0;
-                            SetStartEndPosition();
-                            Solve(null, null);
-                        }
+                        currentDrawMazePosition++;
+                    }
+                    else
+                    {
+                        drawMaze = false;
+                        currentDrawMazePosition = 0;
+                        SetStartEndPosition();
+                        Solve(null, null);
                     }
                 }
-                else
-                {
+            }
+            else
+            {
                 for (int i = 0; i < 100; i++)
                 {
                     if (mazePath == null || currentPosition >= mazePath.Count)
@@ -131,8 +123,8 @@ namespace MazeSolver
                     }
 
                     var point = mazePath[currentPosition];
-                    HSLColor color = new HSLColor((point.X / MazeWidth) * 255, 255, finalPath ? 90 : 190);
-                    maze[(int)point.X, (int)point.Y].Background = new SolidColorBrush(color);
+                    //HSLColor color = new HSLColor((point.X / MazeWidth) * 255, 255, finalPath ? 90 : 190);
+                    maze[(int)point.X, (int)point.Y].Background = new SolidColorBrush(Colors.Red);
                     currentPosition++;
 
                     if (currentPosition >= mazePath.Count && !finalPath)
